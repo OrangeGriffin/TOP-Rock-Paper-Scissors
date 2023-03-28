@@ -11,10 +11,49 @@ function getComputerChoice() {
   }
 }
 
-
 // Provide prompt for user to enter a choice. Convert entry to all lowercase.
 function getPlayerChoice() {
   let playerChoice = prompt("Rock, Paper, or Scissors?");
   playerChoice = playerChoice.toLocaleLowerCase();
-  return playerChoice
+  return playerChoice;
 }
+
+function playRound(playerSelection, computerSelection) {
+  playerSelection = getPlayerChoice();
+  computerSelection = getComputerChoice();
+  //console.log(`You chose ${playerSelection}. Computer chose ${computerSelection}.`)
+
+  switch (playerSelection) {
+    case "paper":
+      if (computerSelection === "paper") {
+        return "This is a tie. You both chose Paper.";
+      } else if (computerSelection === "scissors") {
+        return "You lose :( Scissors cuts Paper";
+      } else {
+        return "You win! Paper covers Rock";
+      }
+      break;
+    case "rock":
+      if (computerSelection === "paper") {
+        return "You lose :( Paper covers Rock";
+      } else if (computerSelection === "scissors") {
+        return "You win! Rock crushes scissors.";
+      } else {
+        return "This is a tie. You both chose Rock";
+      }
+      break;
+      case "scissors":
+      if (computerSelection === "paper") {
+        return "You win! Scissors cuts paper";
+      } else if (computerSelection === "rock") {
+        return "You lose :( Rock crushes scissors.";
+      } else {
+        return "This is a tie. You both chose Scissors";
+      }
+      break;
+    default:
+      return "HUH?";
+  }
+}
+
+console.log(playRound());
