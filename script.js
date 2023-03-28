@@ -21,6 +21,7 @@ function getPlayerChoice() {
 function playRound(playerSelection, computerSelection) {
   playerSelection = getPlayerChoice();
   computerSelection = getComputerChoice();
+
   //console.log(`You chose ${playerSelection}. Computer chose ${computerSelection}.`)
 
   switch (playerSelection) {
@@ -56,4 +57,8 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-console.log(playRound());
+function game() {
+  return playRound()
+}
+
+console.log(game())
