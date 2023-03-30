@@ -62,7 +62,9 @@ function playRound() {
 }
 
 function game() {
-  for (let round = 1; round < 6; round++) {
+
+// Per project instructions, removing the logic which plays exactly five rounds
+/*   for (let round = 1; round < 6; round++) {
     console.log(playRound(playerWinCount, computerWinCount));
   }
 
@@ -72,7 +74,7 @@ function game() {
     console.log(`You lose: ${playerWinCount} to ${computerWinCount}`);
   } else {
     console.log("Tie");
-  }
+  } */
 }
 
 game();
