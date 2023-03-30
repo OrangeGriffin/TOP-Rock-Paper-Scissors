@@ -15,15 +15,10 @@ function getComputerChoice() {
   }
 }
 
-// Provide prompt for user to enter a choice. Convert entry to all lowercase.
-function getPlayerChoice() {
-  let playerChoice = prompt("Rock, Paper, or Scissors?");
-  playerChoice = playerChoice.toLocaleLowerCase();
-  return playerChoice;
-}
 
-function playRound() {
-  playerSelection = getPlayerChoice();
+function playRound(playerChoice) {
+  playerChoice = playerChoice.toLowerCase();
+  playerSelection = playerChoice;
   computerSelection = getComputerChoice();
 
   switch (playerSelection) {
@@ -85,7 +80,10 @@ const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
 
   button.addEventListener('click', () => {
-    playRound()
+    const playerChoice = button.innerHTML
+    console.log(playerChoice)
+
+    console.log(playRound(playerChoice));
   })
 })
 
