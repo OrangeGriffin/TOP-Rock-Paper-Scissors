@@ -1,0 +1,5 @@
+.choice-container {
+    border: 5px solid rebeccapurple;
+    display: flex;
+    gap: 10px;
+}
