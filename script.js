@@ -81,9 +81,12 @@ buttons.forEach((button) => {
 
   button.addEventListener('click', () => {
     const playerChoice = button.innerHTML
-    console.log(playerChoice)
+    //console.log(playerChoice)
 
-    console.log(playRound(playerChoice));
+   const testResults = document.createElement('p');
+   testResults.innerHTML = playRound(playerChoice);
+    
+    document.querySelector(".round-results").appendChild(testResults)
   })
 })
 
