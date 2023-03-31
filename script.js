@@ -1,6 +1,7 @@
 // set global variables for win count
 let playerWinCount = 0;
 let computerWinCount = 0;
+let playClickCount = 0;
 
 function getComputerChoice() {
   // Return a random number from 1 to 3, which will then be assigned
@@ -81,24 +82,18 @@ const buttons = document.querySelectorAll("button");
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
+    playClickCount++;
     const playerChoice = button.innerHTML;
-
-    const roundResult = document.createElement("p");
-
-    // Call playRound and hold result in new p element
-    roundResult.innerHTML = playRound(playerChoice); 
-
-    // Add result text to .round-results div
-    document.querySelector(".round-results").appendChild(roundResult);
-
-
-    // Create and dispaly a score when a button is clicked
-    const scoreBoard = document.createElement("h3")
-    scoreBoard.innerHTML = "Scoreboard"
-    document.querySelector(".score-container").appendChild(scoreBoard);
-
-    console.log("Player wins: ", playerWinCount)
-    console.log("CPU Wins: ", computerWinCount)
-
+    if (playClickCount === 1) {
+      beginGame();
+    }
   });
 });
+
+const beginGame = function () {
+  const scoreBoard = document.querySelector(".score-container");
+  const scoreHeader = document.createElement("h3");
+  scoreHeader.innerText = "Scoreboard";
+
+  scoreBoard.appendChild(scoreHeader);
+};
