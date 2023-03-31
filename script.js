@@ -84,8 +84,11 @@ buttons.forEach((button) => {
     const playerChoice = button.innerHTML;
 
     const roundResult = document.createElement("p");
-    roundResult.innerHTML = playRound(playerChoice);
+    
+    // Call playRound and hold result in new p element
+    roundResult.innerHTML = playRound(playerChoice); 
 
+    // Add result text to .round-results div
     document.querySelector(".round-results").appendChild(roundResult);
   });
 });
