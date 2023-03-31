@@ -35,8 +35,10 @@ function playRound(playerChoice) {
       break;
     case "rock":
       if (computerSelection === "paper") {
+        computerWinCount++;
         return "You lose :( Paper covers Rock";
       } else if (computerSelection === "scissors") {
+        playerWinCount++;
         return "You win! Rock crushes scissors.";
       } else {
         return "This is a tie. You both chose Rock";
@@ -44,8 +46,10 @@ function playRound(playerChoice) {
       break;
     case "scissors":
       if (computerSelection === "paper") {
+        playerWinCount++;
         return "You win! Scissors cuts paper";
       } else if (computerSelection === "rock") {
+        computerWinCount++;
         return "You lose :( Rock crushes scissors.";
       } else {
         return "This is a tie. You both chose Scissors";
