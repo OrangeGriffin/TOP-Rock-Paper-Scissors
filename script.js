@@ -3,6 +3,18 @@ let playerWinCount = 0;
 let computerWinCount = 0;
 let playClickCount = 0;
 
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    playClickCount++;
+    const playerChoice = button.innerHTML;
+    if (playClickCount === 1) {
+      game(playerChoice);
+    }
+  });
+});
+
 function getComputerChoice() {
   // Return a random number from 1 to 3, which will then be assigned
   // to a rock, paper, or scissors value
@@ -60,54 +72,34 @@ function playRound(playerChoice) {
   }
 }
 
-function game() {
-  // Per project instructions, removing the logic which plays exactly five rounds
-  /*   for (let round = 1; round < 6; round++) {
-    console.log(playRound(playerWinCount, computerWinCount));
+function game(playerChoice) {
+  if (playClickCount === 1) {
+    newGame();
+    playRound(playerChoice);
+    while (playerWinCount < 5 && computerWinCount < 5) {
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          playClickCount++;
+          const playerChoice = button.innerHTML;
+          if (playClickCount === 1) {
+            game(playerChoice);
+          }
+        });
+      });
+      playRound(playerChoice);
+    }
   }
-
-  if (playerWinCount > computerWinCount) {
-    console.log(`You win: ${playerWinCount} to ${computerWinCount}`);
-  } else if (playerWinCount < computerWinCount) {
-    console.log(`You lose: ${playerWinCount} to ${computerWinCount}`);
-  } else {
-    console.log("Tie");
-  } */
 }
 
-game();
+// When a new game begins, display scoreboard
+function newGame() {
+  // Display text at header
+  const scoreboardHeader = document.querySelector(".scoreboard-header");
+  scoreboardHeader.innerText = "Scoreboard";
 
-// Beging DOM / UI Updates
-const buttons = document.querySelectorAll("button");
+  const playerHeader = document.querySelector(".player-score-header");
+  playerHeader.innerText = "Player";
 
-buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-    playClickCount++;
-    const playerChoice = button.innerHTML;
-    if (playClickCount === 1) {
-      beginGame();
-    }
-  });
-});
-
-const beginGame = function () {
-  // Display Scoreboard header on first "play"
-  const scoreHeader = document.querySelector(".scoreboard-header");
-  scoreHeader.innerText = "Scoreboard";
-
-
-  // Display score headers
-  const playerScoreHeader = document.querySelector(".player-score-header");
-  const cpuScoreHeader = document.querySelector(".cpu-score-header")
-  playerScoreHeader.innerText = "You";
-  cpuScoreHeader.innerText = "CPU";
-
-  // Display scores
-  const playerScore = document.querySelector(".player-score-tracker");
-  const playerScoreTracker = `${playerWinCount}`;
-  playerScore.innerText = playerScoreTracker;
-
-  const cpuScore = document.querySelector(".cpu-score-tracker");
-  const cpuScoreTracker = `${computerWinCount}`;
-  cpuScore.innerText = cpuScoreTracker
-};
+  const cpuHeader = document.querySelector(".cpu-score-header");
+  cpuHeader.innerText = "CPU";
+}
