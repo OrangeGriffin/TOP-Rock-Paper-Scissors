@@ -84,11 +84,21 @@ buttons.forEach((button) => {
     const playerChoice = button.innerHTML;
 
     const roundResult = document.createElement("p");
-    
+
     // Call playRound and hold result in new p element
     roundResult.innerHTML = playRound(playerChoice); 
 
     // Add result text to .round-results div
     document.querySelector(".round-results").appendChild(roundResult);
+
+
+    // Create and dispaly a score when a button is clicked
+    const scoreBoard = document.createElement("h3")
+    scoreBoard.innerHTML = "Scoreboard"
+    document.querySelector(".score-container").appendChild(scoreBoard);
+
+    console.log("Player wins: ", playerWinCount)
+    console.log("CPU Wins: ", computerWinCount)
+
   });
 });
