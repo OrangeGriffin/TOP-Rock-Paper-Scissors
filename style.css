@@ -3,8 +3,18 @@
     padding: 0;
 }
 
+.game-container {
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+}
+
 .choice-container {
     border: 5px solid rebeccapurple;
     display: flex;
-    gap: 10px;
+    gap: 5px;
+}
+
+.score-container {
+    border: 5px solid rebeccapurple
 }
