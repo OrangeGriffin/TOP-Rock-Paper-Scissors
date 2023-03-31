@@ -91,9 +91,23 @@ buttons.forEach((button) => {
 });
 
 const beginGame = function () {
-  const scoreBoard = document.querySelector(".score-container");
-  const scoreHeader = document.createElement("h3");
+  // Display Scoreboard header on first "play"
+  const scoreHeader = document.querySelector(".scoreboard-header");
   scoreHeader.innerText = "Scoreboard";
 
-  scoreBoard.appendChild(scoreHeader);
+
+  // Display score headers
+  const playerScoreHeader = document.querySelector(".player-score-header");
+  const cpuScoreHeader = document.querySelector(".cpu-score-header")
+  playerScoreHeader.innerText = "You";
+  cpuScoreHeader.innerText = "CPU";
+
+  // Display scores
+  const playerScore = document.querySelector(".player-score-tracker");
+  const playerScoreTracker = `${playerWinCount}`;
+  playerScore.innerText = playerScoreTracker;
+
+  const cpuScore = document.querySelector(".cpu-score-tracker");
+  const cpuScoreTracker = `${computerWinCount}`;
+  cpuScore.innerText = cpuScoreTracker
 };
