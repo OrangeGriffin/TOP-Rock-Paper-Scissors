@@ -15,7 +15,6 @@ function getComputerChoice() {
   }
 }
 
-
 function playRound(playerChoice) {
   playerChoice = playerChoice.toLowerCase();
   playerSelection = playerChoice;
@@ -61,9 +60,8 @@ function playRound(playerChoice) {
 }
 
 function game() {
-
-// Per project instructions, removing the logic which plays exactly five rounds
-/*   for (let round = 1; round < 6; round++) {
+  // Per project instructions, removing the logic which plays exactly five rounds
+  /*   for (let round = 1; round < 6; round++) {
     console.log(playRound(playerWinCount, computerWinCount));
   }
 
@@ -82,15 +80,12 @@ game();
 const buttons = document.querySelectorAll("button");
 
 buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const playerChoice = button.innerHTML;
 
-  button.addEventListener('click', () => {
-    const playerChoice = button.innerHTML
-    //console.log(playerChoice)
+    const gameResult = document.createElement("p");
+    gameResult.innerHTML = playRound(playerChoice);
 
-   const testResults = document.createElement('p');
-   testResults.innerHTML = playRound(playerChoice);
-    
-    document.querySelector(".round-results").appendChild(testResults)
-  })
-})
-
+    document.querySelector(".round-results").appendChild(gameResult);
+  });
+});
