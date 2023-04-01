@@ -5,6 +5,7 @@ let playClickCount = 0;
 
 const playerScoreTracker = document.querySelector(".player-score-tracker");
 const cpuScoreTracker = document.querySelector(".cpu-score-tracker")
+const roundResults = document.querySelector(".round-results")
 
 const rpsButtons = document.querySelectorAll("button");
 
@@ -29,41 +30,41 @@ function playRound(playerChoice) {
   switch (playerSelection) {
     case "paper":
       if (computerSelection === "paper") {
-        return "This is a tie. You both chose Paper.";
+        roundResults.innerText = "This is a tie. You both chose Paper.";
       } else if (computerSelection === "scissors") {
         computerWinCount++;
         cpuScoreTracker.innerText = `${computerWinCount}`;
-        return "You lose :( Scissors cuts Paper";
+        roundResults.innerText = "You lose :( Scissors cuts Paper";
       } else {
         playerWinCount++;
         playerScoreTracker.innerText = `${playerWinCount}`;
-        return "You win! Paper covers Rock";
+        roundResults.innerText = "You win! Paper covers Rock";
       }
       break;
     case "rock":
       if (computerSelection === "paper") {
         computerWinCount++;
         cpuScoreTracker.innerText = `${computerWinCount}`;
-        return "You lose :( Paper covers Rock";
+        roundResults.innerText = "You lose :( Paper covers Rock";
       } else if (computerSelection === "scissors") {
         playerWinCount++;
         playerScoreTracker.innerText = `${playerWinCount}`;
-        return "You win! Rock crushes scissors.";
+        roundResults.innerText = "You win! Rock crushes scissors.";
       } else {
-        return "This is a tie. You both chose Rock";
+        roundResults.innerText = "This is a tie. You both chose Rock";
       }
       break;
     case "scissors":
       if (computerSelection === "paper") {
         playerWinCount++;
         playerScoreTracker.innerText = `${playerWinCount}`;
-        return "You win! Scissors cuts paper";
+        roundResults.innerText = "You win! Scissors cuts paper";
       } else if (computerSelection === "rock") {
         computerWinCount++;
         cpuScoreTracker.innerText = `${computerWinCount}`;
-        return "You lose :( Rock crushes scissors.";
+        roundResults.innerText = "You lose :( Rock crushes scissors.";
       } else {
-        return "This is a tie. You both chose Scissors";
+        roundResults.innerText = "This is a tie. You both chose Scissors";
       }
       break;
     default:
