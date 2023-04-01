@@ -4,8 +4,9 @@ let computerWinCount = 0;
 let playClickCount = 0;
 
 const playerScoreTracker = document.querySelector(".player-score-tracker");
-const cpuScoreTracker = document.querySelector(".cpu-score-tracker")
-const roundResults = document.querySelector(".round-results")
+const cpuScoreTracker = document.querySelector(".cpu-score-tracker");
+const roundResults = document.querySelector(".round-results");
+const gameResults = document.querySelector(".game-results");
 
 const rpsButtons = document.querySelectorAll("button");
 
@@ -35,10 +36,12 @@ function playRound(playerChoice) {
         computerWinCount++;
         cpuScoreTracker.innerText = `${computerWinCount}`;
         roundResults.innerText = "You lose :( Scissors cuts Paper";
+        totalWinTracker();
       } else {
         playerWinCount++;
         playerScoreTracker.innerText = `${playerWinCount}`;
         roundResults.innerText = "You win! Paper covers Rock";
+        totalWinTracker();
       }
       break;
     case "rock":
@@ -109,3 +112,11 @@ rpsButtons.forEach((button) => {
     handleRPSClick(clickedValue);
   });
 });
+
+const totalWinTracker = function () {
+  if (playerWinCount === 5) {
+    gameResults.innerText = "You won!";
+  } else if (computerWinCount === 5) {
+    gameResults.innerText = "You lost :(";
+  } 
+};
