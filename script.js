@@ -2,6 +2,7 @@
 let playerWinCount = 0;
 let computerWinCount = 0;
 let playClickCount = 0;
+let gameEnd = false;
 
 const playerScoreTracker = document.querySelector(".player-score-tracker");
 const cpuScoreTracker = document.querySelector(".cpu-score-tracker");
@@ -78,11 +79,13 @@ function playRound(playerChoice) {
 function game() {}
 
 const handleRPSClick = function (playerChoice) {
-  if (playClickCount === 1) {
-    newGame();
-    playRound(playerChoice);
-  } else if (playClickCount > 1) {
-    playRound(playerChoice);
+  if (!gameEnd) {
+    if (playClickCount === 1) {
+      newGame();
+      playRound(playerChoice);
+    } else if (playClickCount > 1) {
+      playRound(playerChoice);
+    }
   }
 };
 
@@ -116,7 +119,9 @@ rpsButtons.forEach((button) => {
 const totalWinTracker = function () {
   if (playerWinCount === 5) {
     gameResults.innerText = "You won!";
+    gameEnd = true;
   } else if (computerWinCount === 5) {
     gameResults.innerText = "You lost :(";
-  } 
+    gameEnd = true;
+  }
 };
