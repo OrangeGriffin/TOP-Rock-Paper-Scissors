@@ -3,17 +3,10 @@ let playerWinCount = 0;
 let computerWinCount = 0;
 let playClickCount = 0;
 
-const buttons = document.querySelectorAll("button");
+const playerScoreTracker = document.querySelector(".player-score-tracker");
+const cpuScoreTracker = document.querySelector(".cpu-score-tracker")
 
-buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-    playClickCount++;
-    const playerChoice = button.innerHTML;
-    if (playClickCount === 1) {
-      game(playerChoice);
-    }
-  });
-});
+const rpsButtons = document.querySelectorAll("button");
 
 function getComputerChoice() {
   // Return a random number from 1 to 3, which will then be assigned
@@ -39,18 +32,22 @@ function playRound(playerChoice) {
         return "This is a tie. You both chose Paper.";
       } else if (computerSelection === "scissors") {
         computerWinCount++;
+        cpuScoreTracker.innerText = `${computerWinCount}`;
         return "You lose :( Scissors cuts Paper";
       } else {
         playerWinCount++;
+        playerScoreTracker.innerText = `${playerWinCount}`;
         return "You win! Paper covers Rock";
       }
       break;
     case "rock":
       if (computerSelection === "paper") {
         computerWinCount++;
+        cpuScoreTracker.innerText = `${computerWinCount}`;
         return "You lose :( Paper covers Rock";
       } else if (computerSelection === "scissors") {
         playerWinCount++;
+        playerScoreTracker.innerText = `${playerWinCount}`;
         return "You win! Rock crushes scissors.";
       } else {
         return "This is a tie. You both chose Rock";
@@ -59,9 +56,11 @@ function playRound(playerChoice) {
     case "scissors":
       if (computerSelection === "paper") {
         playerWinCount++;
+        playerScoreTracker.innerText = `${playerWinCount}`;
         return "You win! Scissors cuts paper";
       } else if (computerSelection === "rock") {
         computerWinCount++;
+        cpuScoreTracker.innerText = `${computerWinCount}`;
         return "You lose :( Rock crushes scissors.";
       } else {
         return "This is a tie. You both chose Scissors";
@@ -72,24 +71,16 @@ function playRound(playerChoice) {
   }
 }
 
-function game(playerChoice) {
+function game() {}
+
+const handleRPSClick = function (playerChoice) {
   if (playClickCount === 1) {
     newGame();
     playRound(playerChoice);
-    while (playerWinCount < 5 && computerWinCount < 5) {
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          playClickCount++;
-          const playerChoice = button.innerHTML;
-          if (playClickCount === 1) {
-            game(playerChoice);
-          }
-        });
-      });
-      playRound(playerChoice);
-    }
+  } else if (playClickCount > 1) {
+    playRound(playerChoice);
   }
-}
+};
 
 // When a new game begins, display scoreboard
 function newGame() {
@@ -102,4 +93,18 @@ function newGame() {
 
   const cpuHeader = document.querySelector(".cpu-score-header");
   cpuHeader.innerText = "CPU";
+
+  const playerScoreTracker = document.querySelector(".player-score-tracker");
+  playerScoreTracker.innerText = `${playerWinCount}`;
+
+  const cpuScoreTracker = document.querySelector(".cpu-score-tracker");
+  cpuScoreTracker.innerText = `${computerWinCount}`;
 }
+
+rpsButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    playClickCount++;
+    const clickedValue = button.innerHTML;
+    handleRPSClick(clickedValue);
+  });
+});
